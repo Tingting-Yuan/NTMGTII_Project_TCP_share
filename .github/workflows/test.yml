@@ -29,4 +29,4 @@ jobs:
 
     - name: Run automated tests ONLY through pytest
       run: pytest -s test.py
-      run: pytest -q test.py
+      pytest -q test.py
