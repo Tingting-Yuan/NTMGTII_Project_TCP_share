@@ -49,7 +49,7 @@ def run_server(host="127.0.0.1", port=9000):
             continue
 
         # ---------------------------
-        #   DATA TRANSFER
+        #   DATA Receive
         # ---------------------------
         elif flag == "DATA":
             print("SERVER RECEIVED DATA:", payload)
