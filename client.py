@@ -15,14 +15,12 @@ def tcp_handshake(client_sock, seq, ack):
     seq += 1
 
     # Receive SYN-ACK
-    flag, s_seq, s_ack = client_sock.recv(1024).decode().split(",")
-    log_event(LOGFILE, "Server", "Client", int(s_seq), int(s_ack), flag)
 
     # Send ACK
-    client_sock.send(f"ACK,{seq},{int(s_seq)+1}".encode())
-    log_event(LOGFILE, "Client", "Server", seq, int(s_seq)+1, "ACK")
 
-    return seq, int(s_seq)+1
+    # log every step
+
+    return seq, ack_num
 
 
 def tcp_send_data(client_sock, seq, ack, data):
@@ -30,13 +28,10 @@ def tcp_send_data(client_sock, seq, ack, data):
     Send application data with DATA flag.
     """
     # Send DATA
-    client_sock.send(f"DATA,{seq},{ack},{data}".encode())
-    log_event(LOGFILE, "Client", "Server", seq, ack, "DATA")
-
-    seq += len(data)
 
     # Receive ACK for data
-    flag, s_seq, s_ack = client_sock.recv(2048).decode().split(",")
+
+    # logfile
     log_event(LOGFILE, "Server", "Client", int(s_seq), int(s_ack), flag)
 
     return seq, int(s_ack)
@@ -45,21 +40,16 @@ def tcp_send_data(client_sock, seq, ack, data):
 def tcp_teardown(client_sock, seq, ack):
 
     # Send FIN
-    client_sock.send(f"FIN,{seq},{ack}".encode())
-    log_event(LOGFILE, "Client", "Server", seq, ack, "FIN")
-    seq += 1
 
     # Receive ACK
-    flag, s_seq, s_ack = client_sock.recv(1024).decode().split(",")
-    log_event(LOGFILE, "Server", "Client", int(s_seq), int(s_ack), flag)
 
     # Receive FIN
-    flag, s_seq, s_ack = client_sock.recv(1024).decode().split(",")
-    log_event(LOGFILE, "Server", "Client", int(s_seq), int(s_ack), flag)
 
     # Send final ACK
-    client_sock.send(f"ACK,{seq},{int(s_seq)+1}".encode())
-    log_event(LOGFILE, "Client", "Server", seq, int(s_seq)+1, "ACK")
+    
+    # log every step
+    
+    
 
 
 def run_client(host="127.0.0.1", port=9000, data="IMC Welcome!"):
@@ -68,7 +58,7 @@ def run_client(host="127.0.0.1", port=9000, data="IMC Welcome!"):
 
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.connect((host, port))
-
+    # start num, can be any num.
     seq = 100
     ack = 0
 
