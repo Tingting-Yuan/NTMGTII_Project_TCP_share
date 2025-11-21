@@ -28,4 +28,4 @@ jobs:
         rm -f tcp_log_S.json
 
     - name: Run automated tests ONLY through pytest
-      run: pytest -p test.py
+      run: pytest -s test.py
