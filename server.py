@@ -42,10 +42,8 @@ def run_server(host="127.0.0.1", port=9000):
         #   HANDSHAKE
         # ---------------------------
         if flag == "SYN":
-            seq_server += 1
-            ack_server = seq_client + 1
-            conn.send(f"SYN-ACK,{seq_server},{ack_server}".encode())
-            log_event(LOGFILE, "Server", "Client", seq_server, ack_server, "SYN-ACK")
+            # SYN actions: send "SYN-ACK”, caculate seq_num, ack_num, logfile
+
 
         elif flag == "ACK":
             continue
@@ -55,28 +53,14 @@ def run_server(host="127.0.0.1", port=9000):
         # ---------------------------
         elif flag == "DATA":
             print("SERVER RECEIVED DATA:", payload)
-
-            # DATA consumes bytes → increase ack
-            ack_server = seq_client + len(payload)
-            seq_server += 1  # simulate server seq increase
-
-            # Send ACK for data
-            conn.send(f"ACK,{seq_server},{ack_server}".encode())
-            log_event(LOGFILE, "Server", "Client", seq_server, ack_server, "ACK")
+            # Return ACK and caculate seq_num, ack_num, logfile
 
         # ---------------------------
         #   TEARDOWN
         # ---------------------------
         elif flag == "FIN":
-            seq_server += 1
-            ack_server = seq_client + 1
-
-            conn.send(f"ACK,{seq_server},{ack_server}".encode())
-            log_event(LOGFILE, "Server", "Client", seq_server, ack_server, "ACK")
-
-            seq_server += 1
-            conn.send(f"FIN,{seq_server},{ack_server}".encode())
-            log_event(LOGFILE, "Server", "Client", seq_server, ack_server, "FIN")
+            # Return ACK and caculate seq_num, ack_num, logfile
+            # Send Fin, and logfile
 
         else:
             continue
