@@ -43,6 +43,7 @@ def run_server(host="127.0.0.1", port=9000):
         # ---------------------------
         if flag == "SYN":
             # SYN actions: send "SYN-ACK”, caculate seq_num, ack_num, logfile
+            print("SYN")
 
 
         elif flag == "ACK":
