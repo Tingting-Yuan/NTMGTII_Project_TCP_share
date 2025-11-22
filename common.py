@@ -7,8 +7,8 @@ def log_event(logfile, sender, receiver, seq, ack, flags):
     event = {
         "from": sender,
         "to": receiver,
-        "seq": seq,
-        "ack": ack,
+        "seq": seq, # seq_number
+        "ack": ack, # ack_number
         "flags": flags, #"SYN", "SYN-ACK", "ACK", "DATA", "FIN"
         "timestamp": time.time()
     }
