@@ -61,6 +61,7 @@ def run_server(host="127.0.0.1", port=9000):
         elif flag == "FIN":
             # Return ACK and caculate seq_num, ack_num, logfile
             # Send Fin, and logfile
+            print("Fin")
 
         else:
             continue
