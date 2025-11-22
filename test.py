@@ -3,7 +3,7 @@
 Automated test for student's TCP assignment.
 Checks:
 1. 3-way handshake
-2. Data transfer (DATA_STRING)
+2. Data transfer ("Hello IMC Server!")
 3. 4-way teardown
 """
 
@@ -78,7 +78,7 @@ def test_handshake():
         print("3-way Handshake check passed ✅")
         add_score(5)
     except:
-        print("\n3-way Handshake check failed")
+        print("3-way Handshake check failed")
         pass
 
 
