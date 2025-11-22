@@ -51,3 +51,5 @@ project/
 Every message must be logged as a JSON line, e.g.:
 
 {"from": "Client", "to": "Server", "seq": 107, "ack": 107, "flags": "DATA", "timestamp": 1763736650.633416}
+
+Note: don't change test.py and test.yml
