@@ -48,6 +48,7 @@ def tcp_teardown(client_sock, seq, ack):
     # Send final ACK
     
     # log every step
+    log_event()
     
     
 
