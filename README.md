@@ -48,8 +48,10 @@ project/
 
 🗂 Logging Format (given in common.py)
 
-Every message must be logged as a JSON line, e.g.:
+Every message must be logged as a JSON line,
+flags: "SYN", "SYN-ACK", "ACK", "DATA", "FIN".
 
+e.g.:
 {"from": "Client", "to": "Server", "seq": 107, "ack": 201, "flags": "DATA", "timestamp": 1763736650.633416}
 
 Note: don't change test.py and test.yml
