@@ -78,7 +78,7 @@ def test_handshake():
         print("3-way Handshake check passed ✅")
         add_score(5)
     except:
-        print("3-way Handshake check failed")
+        print("\n3-way Handshake check failed")
         pass
 
 
